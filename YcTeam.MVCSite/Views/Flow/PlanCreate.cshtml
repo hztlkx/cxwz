@@ -1,0 +1,313 @@
+﻿@model YcTeam.DTO.FlowPlan.PlanDto
+<style>
+    body {
+        padding-top: 40px;
+    }
+
+    .text-box {
+        width: 70% !important;
+        height: 0.8rem !important;
+        margin: 0px !important;
+        height: 2rem !important;
+        font-size:13px !important;
+    }
+
+    .control-label {
+        color: #0F744E !important;
+        float: left;
+    }
+
+    .price {
+        width:50%;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <table>
+            <tr>
+                <td colspan="6">
+                    <b>@Model.ProjectName（@Model.StatusName）</b>
+                </td>
+            </tr>
+            <tr>
+                <td style="float: left;">
+                    <h6>【物料维护】</h6>
+                </td>
+                <td style="float: right;">
+                    <input type="submit" value="添加物料" class="btn btn-xs"/>&nbsp;&nbsp;
+                    <input type="button" value="返回列表" class="btn btn-xs"
+                           style="background-color: white; color: #0F744E"
+                           onclick="window.open('@Url.Action("PlanList")', '_self')"/>
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <td style="padding: 0px !important;">
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.LabelFor(model => model.Describe, htmlAttributes: new { @class = "control-label" })
+                            </td>
+                            <td style="padding: 0px !important;">
+                                @Html.Partial("~\\Views\\AutoComplete\\Material.cshtml", ViewData["Single"] = "/AutoComplete/MaterialSearch")
+                                @Html.HiddenFor(m => m.PlanId)
+                            </td>
+                            <td>
+                                置空
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PlanMaterialDto.Num, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PlanMaterialDto.Num)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PlanMaterialDto.Price, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PlanMaterialDto.Price)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.PlanMaterialDto.Note, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PlanMaterialDto.Note)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PlanMaterialDto.TechNumber, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PlanMaterialDto.TechNumber)
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.PlanMaterialDto.PlanDate, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.PlanMaterialDto.PlanDate,
+                        new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "readInput",
+                                @readonly = "readonly",
+                                @onfocus = "WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})"
+                            }
+                        })
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<hr />
+<table width="100%">
+    <tr>
+        <td style="float:left;">
+            <h6>【物资清单】</h6>
+        </td>
+        <td>
+            下一操作人：
+            @if (ViewBag.SysUserList != null)
+            {
+                @Html.DropDownList("SelectUser", ViewBag.SysUserList as List<SelectListItem>, new
+                {
+                    @class = "dropdown",
+                    @style = "width:150;height:32px;font-size:14px;"
+                })
+            }
+        </td>
+    </tr>
+</table>
+
+<table id="table2" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th width="25%">
+            @Html.DisplayNameFor(model => model.Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanMaterialDto.TechNumber)
+        </th>
+        <th width="8%">
+            @Html.DisplayNameFor(model => model.PlanMaterialDto.Price)
+            ( 元 )
+        </th>
+        <th width="6%">
+            @Html.DisplayNameFor(model => model.PlanMaterialDto.Num)
+        </th>
+        <th width="8%">
+            @Html.DisplayNameFor(model => model.PlanMaterialDto.PlanDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlanMaterialDto.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th>操作</th>
+        <th>操作</th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model.PlanMaterialList)
+    {
+        i++;
+        <tr>
+            <td>
+                @item.Material.Code
+                @Html.EditorFor(modelItem=>item.Id, new
+                {
+                   htmlAttributes = new
+                   {
+                       @id = "id" + i,
+                       @style="display:none"
+                   }
+                })
+                @Html.EditorFor(modelItem=>item.PlanId, new
+                {
+                    htmlAttributes = new
+                    {
+                        @id = "PlanId" + i,
+                        @style="display:none"
+                    }
+                })
+                @Html.EditorFor(modelItem=>item.MaterialId, new
+                {
+                    htmlAttributes = new
+                    {
+                        @id = "MaterialId" + i,
+                        @style="display:none"
+                    }
+                })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material.Describe)
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.TechNumber, new
+                {
+                    htmlAttributes = new
+                    {
+                        @id = "TechNumber" + i
+                    }
+                })
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.Price, new
+                {
+                    htmlAttributes = new
+                    {
+                        @id = "Price" + i,
+                        @style = "text-align:center;width:50% !important;",
+                    }
+                })（元）
+            </td>
+            <td>
+                @Html.EditorFor(modelItem => item.Num, new
+                {
+                    htmlAttributes = new
+                    {
+                        @id = "Num" + i,
+                        @style = "text-align:center;width:50% !important;",
+                    }
+                })
+                @Html.DisplayFor(modelItem => item.Material.Unit)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.PlanMaterialDto.PlanDate, new
+                {
+                    htmlAttributes = new
+                    {
+                        @id = "PlanDate" + i,
+                        @class = "readInput",
+                        @readonly = "readonly",
+                        @style = "text-align:center;width:90% !important;",
+                        @onfocus = "WdatePicker({skin:'whyGreen',dateFmt:'yyyy-MM-dd'})"
+                    }
+                })
+            </td>
+            <td >
+                @Html.TextAreaFor(modelItem => item.Note, new
+                {
+                    @id = "Note" + i,
+                    @style="border-left:none;border-right:none;border-top:none;height:40px !important"
+                })
+            </td>
+            <td width="80">
+                @Html.EditorFor(modelItem => item.StatusName, new
+                {
+                   htmlAttributes = new
+                   {
+                       @id = "StatusName" + i,
+                       @readonly = "readonly",
+                       @style="color:black;border-bottom:none;font-size:12px;text-align:center;"
+                   }
+                })
+            </td>
+            <td>
+                <a class="btn btn-xs" onclick="UpdateMaterial(@i)">修改</a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-remove" onclick="RemoveMaterial('@item.Id','@i')" style="cursor: pointer;"></a>
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    function UpdateMaterial(i) {
+        var id = $("#id" + i).val();
+        var planId = $("#PlanId" + i).val();
+        var materialId = $("#MaterialId" + i).val();
+        var techNumber = $("#TechNumber" + i).val();
+        var price = $("#Price" + i).val();
+        var num = $("#Num" + i).val();
+        var planDate = $("#PlanDate" + i).val();
+        var note = $("#Note" + i).val();
+        var statusName = $("#StatusName" + i).val();
+
+        var jsonArray = [];
+        var json = new Object();
+        json.id = id,
+            json.planId = planId;
+        json.materialId = materialId;
+        json.techNumber = techNumber;
+        json.price = price;
+        json.num = num;
+        json.planDate = planDate;
+        json.note = note;
+        json.statusName = statusName;
+        jsonArray.push(json);
+
+        console.log(json);
+
+        $.ajax({
+            url: "/Flow/PlanMaterialEdit",
+            type: "post",
+            dataType: "json",
+            data: JSON.stringify(jsonArray),
+            success: function(rst) {
+                if (rst.Data) {
+                    alert("更新成功!");
+                } else {
+                    alert("更新失败!");
+                }
+            }
+        });
+    }
+
+    function RemoveMaterial(id,i) {
+        if (confirm("确定要删除吗?")) {
+            $.ajax({
+                url: "/Flow/PlanMaterialDelete",
+                type: "post",
+                data: { id : id },
+                success: function(rst) {
+                    if (rst.Data) {
+                        window.location.reload();
+                    } else {
+                        alert("删除失败!");
+                    }
+                }
+            });
+        }
+    }
+</script>

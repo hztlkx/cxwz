@@ -1,0 +1,70 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.IPagedList
+<style>
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0px;
+            padding: 3px;
+        }
+
+        .pagination > .active > a, .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #fff;
+            cursor: default;
+            background-color: #2BBBAD;
+            border-color: #26A69A;
+        }
+
+        .pagination > li > a, .pagination > li > span {
+            color: #26A69A;
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.428571429;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        .pagination > .disabled > span, 
+        .pagination > .disabled > span:hover,
+        .pagination > .disabled > span:focus, .pagination > .disabled > a,
+        .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
+            color: #eee;
+            cursor: not-allowed;
+            background-color: #fff;
+            border-color: #ddd;
+        }
+</style>
+<div>
+    <div class="col-xs-10 col-xs-push-1">
+        @{ Random rd = new Random();
+            string sss = rd.Next(1, 10000).ToString();}
+        @Html.Pager(Model, pagerOptions: new PagerOptions
+       {
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 5,
+           ContainerTagName = "ul",
+           CssClass = "pagination",
+           CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+           DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+           PagerItemTemplate = "<li>{0}</li>",
+           PageIndexBoxId = "pageIndexBox" + sss,
+           GoToButtonId = "goToBtn" + sss,
+           Id = "bootstrappager" + sss
+       })
+    </div>
+    <div class="col-xs-1 col-xs-pull-1">
+        <div class="input-group" style="width: 100px; margin-top: 5px; ">
+            <select id="pageIndexBox@{@sss}" class="form-control input-sm" style="height: 28px; width: 65px;"></select>
+            <span class="input-group-btn"><button class="btn btn-primary btn-sm" id="goToBtn@{@sss}" style="height:28px;line-height:28px;">跳转</button></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<YcTeam.DTO.System.SysNavRoleDto>
+
+<p>
+    <h6>角色：@ViewBag.roleName</h6>
+</p>
+
+@using (Html.BeginForm())
+{
+<form action="@Url.Action("SetNav")" method="post">
+    <table class="table" style="width: 100% !important">
+        <tr>
+            <th>序号</th>
+            <td>选择</td>
+            <th>
+                @Html.DisplayNameFor(model => model.NavItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NavName)
+            </th>
+        </tr>
+        @for (var i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @{var index = i + 1;}
+                    @index
+                </td>
+                <td>
+                    @Html.HiddenFor((modelItem => modelItem.ToList()[i].Id))
+                    @Html.HiddenFor((modelItem => modelItem.ToList()[i].RoleId))
+                    @Html.CheckBoxFor(modelItem => modelItem.ToList()[i].IsChecked,
+                        new
+                        {
+                            @onclick = "SetNav(this,'" +
+                                       Model.ToList()[i].Id + "','" +
+                                       Model.ToList()[i].NavItemId + "','" +
+                                       Model.ToList()[i].IsChecked + "')"
+                        })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.ToList()[i].NavItemName)
+                    @Html.HiddenFor(modelItem => modelItem.ToList()[i].NavItemId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.ToList()[i].NavName)
+                    @Html.HiddenFor(modelItem => modelItem.ToList()[i].NavId)
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="分配角色" class="btn btn-default"/>
+        </div>
+    </div>
+    <input type="hidden" id="roleId" name="roleId" value="@ViewBag.roleId"/>
+    <input type="hidden" id="addRids" name="addRids" value="" style="max-width: 2000px !important;"/>
+    <input type="hidden" id="removeRids" name="removeRids" value="" style="max-width: 2000px !important;"/>
+</form>
+}
+
+<div>
+    @Html.ActionLink("返回", "SysRoleList")
+</div>
+
+<script>
+    var AddArray = [];
+    var removeArray = [];
+    function SetNav(obj, id, itemId, ck) {
+        var isChecked = $(obj).is(":checked");
+        //无分配
+        if (ck === "False") {
+            var addResult = $.inArray(itemId.toString(), AddArray);
+            //添加新的权限
+            if (isChecked) {
+                //数组记录不存在
+                if (addResult < 0) {
+                    AddArray.push(itemId.toString());
+                    $("#addRids").val(AddArray);
+                }
+            } else {
+                //剔除已存在
+                if (addResult > -1) {
+                    AddArray.splice(addResult, 1);//参数1：从0开始，删除第几个，参数2：删除几个
+                    $("#addRids").val(AddArray);
+                }
+            }
+        }
+        //已分配
+        else {
+            var removeResult = $.inArray(id.toString(), removeArray);
+            //剔除要删除的权限
+            if (isChecked) {
+                //剔除已存在
+                if (removeResult > -1) {
+                    removeArray.splice(removeResult, 1);//参数1：从0开始，删除第几个，参数2：删除几个
+                    $("#removeRids").val(removeArray);
+                }
+            }
+            //添加要删除的权限
+            else {
+                //数据记录不存在
+                if (removeResult < 0) {
+                    removeArray.push(id.toString());
+                    $("#removeRids").val(removeArray );
+                }
+            }
+        }
+    }
+</script>

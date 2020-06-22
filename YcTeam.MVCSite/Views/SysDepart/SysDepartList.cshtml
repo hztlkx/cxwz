@@ -1,0 +1,88 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<YcTeam.DTO.System.SysDepartDto>
+
+<p>
+    @Html.ActionLink("添加本部门", "CreateSysDepart")
+</p>
+<table class="table table-bordered table-hover table-striped">
+    <thead></thead>
+    <tr>
+        <th>序号</th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegionCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegionCounty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+    <tbody>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartName)
+            </td>
+            <td>
+                @{
+                    if (item.DepartType == 1){<span>施工项目部</span>}
+                    if (item.DepartType == 2){<span>业主项目部</span>}
+                    if (item.DepartType == 3){<span>机关单位</span>}
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegionCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegionCounty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="@Url.Action("SysDepartDetails", new {id = item.Id})">
+                    详情
+                </a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-pencil" href="@Url.Action("SysDepartEdit", new {id = item.Id})"></a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-remove" href="@Url.Action("SysDepartDelete", new {id = item.Id})" onclick="return confirm('确定删除?');"></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <td colspan="10">
+            @Html.Partial("~\\Views\\PageList\\_PageList.cshtml")
+        </td>
+    </tr>
+    </tfoot>
+</table>
+
+
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

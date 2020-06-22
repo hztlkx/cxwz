@@ -1,0 +1,75 @@
+﻿@model IEnumerable<YcTeam.Models.WorkFlow.FlowNode>
+
+<p>
+    @Html.ActionLink("创建工作流节点", "CreateFlowNode")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsRemoved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OperateUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OperateUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextNodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastNodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRemoved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NodeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OperateUserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OperateUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextNodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastNodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

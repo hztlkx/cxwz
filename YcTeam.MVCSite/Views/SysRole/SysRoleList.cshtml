@@ -1,0 +1,77 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<YcTeam.DTO.System.SysRoleDto>
+
+<h6>角色列表</h6>
+
+<p>
+    @Html.ActionLink("添加新角色", "CreateSysRole")
+</p>
+<table class="table">
+    <thead></thead>
+    <tr>
+        <th>序号</th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+        
+    </tr>
+    <tbody>
+        @{ int i = 0;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(Model.StartItemIndex + i++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateTime)
+                </td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="@Url.Action("SetNav", new {id = item.Id,roleName = item.RoleName,roleId = item.Id})">
+                        角色分配
+                    </a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-pencil" href="@Url.Action("EditSysRole", new {id = item.Id})"></a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-remove" href="@Url.Action("DeleteSysRole", new {id = item.Id})" onclick="return confirm('确定删除?');"></a>
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "EditSysRole", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>*@
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10">
+                @Html.Partial("~\\Views\\PageList\\_PageList.cshtml")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}

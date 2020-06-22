@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/metro/css")
+
+    @RenderSection("headers", required: false)
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <div class="header navbar navbar-inverse navbar-fixed-top">
+        <!-- BEGIN TOP NAVIGATION BAR -->
+        <div class="header-inner">
+            <!-- BEGIN LOGO -->
+            <a class="navbar-brand" href="index.html" style="padding: 0px !important;">
+                <img src="~/Content/metro/img/logo.png" alt="logo" class="img-responsive" />
+            </a>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <img src="~/Content/metro/img/menu-toggler.png" alt="" />
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav navbar-nav pull-right">
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <li class="dropdown user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                        <img alt="" src="~/Content/metro/img/avatar1_small.jpg" />
+                        <span id="LoginUserName" class="username">Bob Nilson</span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="extra_profile.html"><i class="fa fa-user"></i> My Profile</a></li>
+                        <li><a href="/Home/Login"><i class="fa fa-key"></i> Log Out</a></li>
+                    </ul>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END TOP NAVIGATION BAR -->
+    </div>
+
+    <div class="page-container">
+
+        <div id="leeNav" class="page-sidebar navbar-collapse collapse" style="padding-top: 40px;">
+            <!-- BEGIN SIDEBAR MENU -->
+            <ul id="navbar" class="page-sidebar-menu">
+                <li>
+                    <div class="sidebar-toggler hidden-phone" style="margin-bottom: 5px;"></div>
+                </li>
+                <li class="start active ">
+                    <a href="/Home/Index">
+                        <i class="fa fa-home"></i>
+                        <span class="title">首页</span>
+                        <span class="selected"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="leeContent" class="page-content" style="height: auto !important; padding-top: 40px;">
+            @RenderBody()
+        </div>
+    </div>
+    
+
+<div id="LayoutIsLoaded" style="display: none;">@Session["LayoutIsLoaded"]</div>
+<div>@ViewData["sid"]</div>
+    @Scripts.Render("~/Content/metro/js")
+<script>
+        //初始化界面高度
+        var h = $(window).height();
+        $("#leeContent").css("min-height", h); //设置最小高度
+
+        //初始化界面框架
+        $(document).ready(function () {
+            App.init();
+        });
+
+        //加载导航数据
+        //var LayoutIsLoaded = $("#LayoutIsLoaded").html();
+        var LayoutIsLoaded = "";
+        if (LayoutIsLoaded === "") {
+            $.ajax({
+                url: "/Home/SysMenu",
+                //async: false,
+                success: function (res) {
+                    $("#LoginUserName").html(res);
+                    var navNameFlag = "";
+                    var index = 0;
+                    var parentIndex = 0;
+                    for (var i in res) {
+                        if (res.hasOwnProperty(i)) {
+                            //滑块属性
+                            var navName = res[i].SysNavItem.SysNav.NavName;
+                            var navIcon = res[i].SysNavItem.SysNav.NavIcons;
+                            //节点属性
+                            var nodeName = res[i].SysNavItem.NodeName;
+                            var nodeUrl = res[i].SysNavItem.NodeUrl;
+                            var nodeIcon = res[i].SysNavItem.NodeIcons;
+
+
+                            //滑块设置
+                            if (navNameFlag !== navName) {
+                                SetNav(navName, "", navIcon, i, false);
+                                navNameFlag = navName;
+                                index = i;
+                                parentIndex++;
+                            }
+
+                            //选项设置
+                            setNode(nodeName, nodeUrl, nodeIcon, index, false);
+
+                            //console.log(navName + ":" + nodeName);
+                        }
+                    }
+                }
+            });
+
+            var active = 'style="display: block;"';
+
+            //动态绑定导航滑块
+            function SetNav(navName, navUrl, navIcon, i, isChild) {
+                if (navIcon == null) { navIcon = "fa fa-leaf" }
+
+                var open = '';
+                if (i === "0") {
+                    open = 'style="display:block;"';
+                }
+                //滑块输出
+                var navHtml = '<li class="">' +
+                    '<a href="javascript:;">' +
+                    '<i class="' + navIcon + '"></i>' +
+                    '<span class="title">' +
+                    navName +
+                    '</span>' +
+                    '<span class="arrow "></span>' +
+                    '</a>' +
+                    '<ul id="ulNode' + i + '" class="sub-menu" ' + open + '>' +
+                    '</ul>' +
+                    '</li>';
+                $("#navbar").append(navHtml);
+            }
+
+            //动态绑定导航节点
+            function setNode(nodeName, nodeUrl, nodeIcon, i, isChild) {
+                if (nodeIcon == null) { nodeIcon = "fa fa-leaf" }
+                //选项输出
+                if (nodeName !== "") {
+                    var nodeHtml = '<li>' +
+                        '<a href="' + nodeUrl + '" onclick="SetSession(' + i + ');">' +
+                        '<i class="' + nodeIcon + '"></i>' +
+                        '<span class="nodeTitle">' + nodeName + '</span>' +
+                        '</a>' +
+                        '</li>';
+
+                    if ($("#ulNode" + i)) {
+                        $("#ulNode" + i).append(nodeHtml);
+                    }
+                }
+                return "";
+            }
+
+            function SetSession(i) {
+                console.log($("ul[id^='ulNode']"));
+            }
+        }
+</script>
+</body>
+</html>

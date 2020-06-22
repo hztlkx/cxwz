@@ -1,0 +1,85 @@
+﻿@model IEnumerable<YcTeam.DTO.System.SysNavItemDto>
+
+<p>
+    @Html.ActionLink("添加节点", "CreateSysNavItem")
+</p>
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeName)
+        </th>
+        <th>b
+            @Html.DisplayNameFor(model => model.NavName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RootId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeIcons)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeOrd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>操作</th>
+        <th>操作</th>
+        <th>操作</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="color: #2BBBAD;">
+                <b>@Html.DisplayFor(modelItem => item.NodeName)</b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NavName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RootId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NodeUrl)
+            </td>
+            <td>
+                <i class="@item.NodeIcons"></i>
+                @Html.DisplayFor(modelItem => item.NodeIcons)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NodeOrd)
+            </td>
+            <td>
+                @item.CreateTime.ToString("yyyy-MM-dd")
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="@Url.Action("SysNavItemDetails", new {id = item.Id})">
+                    详情
+                </a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-pencil" href="@Url.Action("SysNavItemEdit", new {id = item.Id})"></a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-remove" href="@Url.Action("SysNavItemDelete", new {id = item.Id})" onclick="return confirm('确定删除?');"></a>
+            </td>
+    </tr>
+    }
+
+</table>

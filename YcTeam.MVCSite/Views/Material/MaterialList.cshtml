@@ -1,0 +1,81 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<YcTeam.DTO.Master.MaterialDto>
+
+<p>
+    @Html.ActionLink("添加新物料", "CreateMaterial")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LargeCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmallCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>操作</th>
+        <th>操作</th>
+        <th>操作</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LargeCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SmallCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Describe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateTime)
+                </td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="@Url.Action("MaterialDetails", new {id = item.Id})">
+                        <span class="glyphicon-search">详情</span>
+                    </a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-pencil" href="@Url.Action("MaterialEdit", new {id = item.Id})"></a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-remove" font-weight: lighter;" href="@Url.Action("MaterialDelete", new {id = item.Id})" onclick="return confirm('are you sure?');"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10">
+                @Html.Partial("~\\Views\\PageList\\_PageList.cshtml", Model);
+            </td>
+        </tr>
+    </tfoot>
+</table>
+

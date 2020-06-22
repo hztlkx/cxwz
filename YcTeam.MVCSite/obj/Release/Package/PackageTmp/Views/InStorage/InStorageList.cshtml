@@ -1,0 +1,87 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<YcTeam.DTO.Master.InStorageDto>
+<p>
+    @Html.ActionLink("添加仓库", "CreateInStorage")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Describe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>操作</th>
+        <th>操作</th>
+        <th>操作</th>
+    </tr>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Describe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="@Url.Action("InStorageDetails", new {id = item.Id})">
+                    <span class="glyphicon-search">详情</span>
+                </a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-pencil" href="@Url.Action("InStorageEdit", new {id = item.Id})"></a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-remove" font-weight: lighter;" href="@Url.Action("InStorageDelete", new {id = item.Id})" onclick="return confirm('are you sure?');"></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10">
+                @Html.Partial("~\\Views\\PageList\\_PageList.cshtml", Model);
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+@section headers{
+    <style>
+        table th {
+            text-align: center;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0px;
+            padding: 3px;
+        }
+    </style>
+}

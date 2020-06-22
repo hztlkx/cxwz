@@ -1,0 +1,68 @@
+﻿@model YcTeam.MVCSite.Models.SysNavViewModels.SysNavItemViewModel
+
+<div>
+    <h6>导航节点详情</h6>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NodeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NodeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RootId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RootId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NodeUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NodeUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NodeOrd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NodeOrd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NavName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NavName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "SysNavItemEdit", new { id = Model.Id }) |
+    @Html.ActionLink("返回", "SysNavItemList")
+</p>

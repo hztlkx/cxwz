@@ -1,0 +1,169 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size: 12px;/*自定义：默认字体*/
+}
+
+/*自定义：默认表格行=>滑过变色*/
+.table-hover > tbody > tr:hover {
+    background-color: #FFF3F0;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+.navbar-title {
+    color: white !important;
+    font-size: 14px;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #378B35;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white !important;
+}
+
+.navbar-item {
+    color: white  !important;
+}
+
+    .navbar-item:hover {
+        color: #378B35 !important;
+    }
+
+.dropdown-toggle {
+    font-size: 14px !important;
+    color: white;
+}
+
+
+.dropdown-menu {
+    background-color: #449D44;
+}
+
+    .dropdown-menu li:hover {
+        color: #378B35;
+    }
+
+table th {
+    text-align: center;
+}
+
+table td {
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px;
+    padding: 3px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 380px;
+}
+
+/* Checkboxes */
+.form-group-checkbox {
+    width: 100%;
+    padding-top: 0px;
+    margin-bottom: 30px;
+    margin-right: -15px;
+    margin-left: -15px;
+    display: table;
+}
+
+/* select */
+.form-group-select {
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.btn-xs {
+    height: 20px !important;
+    line-height: 20px !important;
+}
+
+.btn.btn-default {
+    margin-top: 30px;
+}
+
+.dl-horizontal>dt{
+    padding-bottom: 20px;
+    font-size: 14px;
+}
+
+.dl-horizontal > dd {
+    padding-bottom: 20px;
+    font-size: 14px;
+}
+
+.Ids {
+    float: left;
+    list-style: none;
+    margin-right: 25px;
+    line-height: 30px;
+}
+
+.table.table-bordered.table-hover.table-striped {
+    font-size: 12px;
+    text-align: center;
+}
+
+.nodeTitle {
+    margin-left: 5px;
+}
+
+.page-breadcrumb.breadcrumb > li > a,
+.page-breadcrumb.breadcrumb > li > i
+{
+    font-size: 16px;
+}
+
+.searchTitle {
+    font-weight: bold;
+    vertical-align: middle !important;
+}
+
+.searchSelect {
+    height:30px !important;
+}
+
+.readInput {
+    background-color: white !important;
+    color: black !important;
+    border-bottom: 1px solid #9E9E9E !important;
+}
+
+.readLabel {
+    height: 2rem !important;
+    background-color: white !important;
+    color: black !important;
+    border: none !important;
+}
+

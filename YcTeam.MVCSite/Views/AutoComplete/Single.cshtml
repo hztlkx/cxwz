@@ -1,0 +1,13 @@
+﻿ @Scripts.Render("~/bundles/AutoComplete")
+<form class="col s12">
+    <!--单选-->
+    <div id="single"></div>
+</form>
+ <style>
+     .dropdown-content {
+         max-height: 50px;
+     }
+ </style>
+ <script>
+     AutoComplete("single", "@ViewData["Single"]");
+ </script>

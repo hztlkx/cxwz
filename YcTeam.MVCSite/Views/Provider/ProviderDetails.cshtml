@@ -1,0 +1,28 @@
+﻿@model YcTeam.DTO.Master.ProviderDto
+
+<div>
+    <h4>ProviderDto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("修改", "ProviderEdit", new { id = Model.Id }) |
+    @Html.ActionLink("返回", "ProviderList")
+</p>

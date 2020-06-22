@@ -1,0 +1,17 @@
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\YcTeam.IDAL.dll
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\YcTeam.IDAL.pdb
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\YcTeam.Models.dll
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\MySql.Data.Entity.EF6.dll
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\EntityFramework.dll
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\MySql.Data.dll
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\YcTeam.Models.pdb
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\YcTeam.Models.dll.config
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\MySql.Data.Entity.EF6.xml
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\EntityFramework.xml
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\MySql.Data.xml
+E:\Github\长兴物资\YcTeam.IDAL\bin\Release\zh-Hans\EntityFramework.resources.dll
+E:\Github\长兴物资\YcTeam.IDAL\obj\Release\YcTeam.IDAL.csprojAssemblyReference.cache
+E:\Github\长兴物资\YcTeam.IDAL\obj\Release\YcTeam.IDAL.csproj.CoreCompileInputs.cache
+E:\Github\长兴物资\YcTeam.IDAL\obj\Release\YcTeam.IDAL.csproj.CopyComplete
+E:\Github\长兴物资\YcTeam.IDAL\obj\Release\YcTeam.IDAL.dll
+E:\Github\长兴物资\YcTeam.IDAL\obj\Release\YcTeam.IDAL.pdb

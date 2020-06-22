@@ -1,0 +1,90 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<YcTeam.DTO.FlowInto.InStorageTaskDto>
+
+@{
+    ViewBag.Title = "入库任务";
+}
+    <p>
+        @Html.ActionLink("添加入库任务", "CreateInStorageTask")
+
+        @Html.ActionLink("物料入库", "CreateInStorageTask")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Organization)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysBatch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Describe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </th>
+            <th style="color:green">操作</th>
+            <th style="color:red">作废</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Organization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysBatch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Describe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlanNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.ActionLink("添加物料", "InsertInStorageTask", new { id = item.Id })
+        </td>
+        <td>
+            <a class="glyphicon glyphicon-remove" font-weight: lighter;" href="@Url.Action("InStorageTaskDelete", new {id = item.Id})" onclick="return confirm('are you sure?');"></a>
+        </td>
+    </tr>
+        }
+
+    </table>

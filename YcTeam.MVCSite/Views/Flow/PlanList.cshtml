@@ -1,0 +1,144 @@
+﻿@model IEnumerable<YcTeam.DTO.FlowPlan.PlanDto>
+<style>
+    .table-hover > tbody > tr:hover {
+        background-color: #ffffff;
+    }
+    .btn-danger {
+        background-color: #FF9510 !important;
+    }
+</style>
+<script>
+    $(function () {
+        var day = new Date();
+        var year = day.getFullYear();
+        var month = day.getMonth()+1;
+        $("#selectYear option:contains(" + year + ")").prop("selected", "selected"); 
+        $("#selectMonth option:contains(" + month + ")").prop("selected", "selected"); 
+    });
+</script>
+<p>
+    <table class="table" style="">
+        <tr>
+            <td>
+                <span class="searchTitle">年份</span>
+                <select id="selectYear" class="searchSelect" style="width: 60px;">
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+                年
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="searchTitle">月份</span>
+                <select id="selectMonth" class="searchSelect" style="width: 45px;">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                月
+            </td>
+            <td>
+                <span class="searchTitle">选择流程</span>
+                @if (ViewBag.FlowNodeList != null)
+                {
+                    @Html.DropDownList("SelectFlowNode", ViewBag.FlowNodeList as List<SelectListItem>, new
+                    {
+                        @class = "dropdown",
+                        @style = "width:150;height:32px;font-size:14px;"
+                    })
+                }
+            </td>
+            <td class="searchTitle">查询</td>
+        </tr>
+    </table>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysDepartOwnerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysDepartId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OperatedUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OperatingUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToDoUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th>操作</th>
+    </tr>
+
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysDepartOwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysDepartName)
+        </td>
+        <td>
+            @item.StartUser
+        </td>
+        <td>
+            @item.OperatedUser
+        </td>
+        <td>
+            @item.OperatingUser
+        </td>
+        <td>
+            @item.ToDoUser
+        </td>
+        <td>
+            @item.CreateTime.ToString("yyyy-MM-dd")
+        </td>
+        <td>
+            @item.StatusName
+        </td>
+        <td>
+            <a class="btn btn-success btn-xs" href="@Url.Action("PlanCreate",
+                new
+                {
+                    planId = item.PlanId,
+                    departId = item.SysDepartId,
+                    projectName = item.ProjectName,
+                    nextNodeNumber = item.NextNodeNumber,
+                    statusName = item.StatusName
+                })">
+                <span>物料维护</span>
+            </a>
+        </td>
+    </tr>
+    }
+</table>

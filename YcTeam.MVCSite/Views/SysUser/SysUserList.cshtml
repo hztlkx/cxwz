@@ -1,0 +1,69 @@
+﻿@model IEnumerable<YcTeam.DTO.System.SysUserDto>
+
+<p>
+    @Html.ActionLink("添加用户", "Register","Home")
+</p>
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RealName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysDepartName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SysRoleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </th>
+            <th>操作</th>
+            <th>操作</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RealName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysDepartName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysRoleName)
+                </td>
+                <td>
+                    @item.CreateTime.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="@Url.Action("SysUserDetails", new {id = item.Id})">
+                        详情
+                    </a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-pencil" href="@Url.Action("SysUserEdit", new {id = item.Id})"></a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-remove" href="@Url.Action("SysUserDelete", new {id = item.Id})" onclick="return confirm('确定删除?');"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="10">
+                @Html.Partial("~\\Views\\PageList\\_PageList.cshtml", Model)
+            </td>
+        </tr>
+    </tfoot>
+</table>

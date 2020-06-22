@@ -1,0 +1,65 @@
+﻿@model IEnumerable<YcTeam.DTO.WorkFlow.FlowNodeDto>
+
+<p>
+    @Html.ActionLink("创建工作流节点", "FlowNodeCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SysRoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreNodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextNodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>操作</th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysRoleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NodeName)
+        </td>
+        <td>
+            <b style="color: #0F744E;">@Html.DisplayFor(modelItem => item.NodeNumber)</b>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreNodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextNodeNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            <a class="glyphicon glyphicon-pencil" href="@Url.Action("FlowNodeEdit", new {id = item.Id})"></a>
+        </td>
+        <td>
+            <a class="glyphicon glyphicon-remove" href="@Url.Action("FlowNodeDelete", new {id = item.Id})" onclick="return confirm('确定删除?');"></a>
+        </td>
+    </tr>
+}
+
+</table>

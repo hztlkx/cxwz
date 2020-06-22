@@ -1,0 +1,44 @@
+﻿@model YcTeam.DTO.System.SysDepartDto
+
+<div>
+    <h6>部门详情</h6>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegionCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegionCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegionCounty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegionCounty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("修改", "SysDepartEdit", new { id = Model.Id }) |
+    @Html.ActionLink("返回", "SysDepartList")
+</p>

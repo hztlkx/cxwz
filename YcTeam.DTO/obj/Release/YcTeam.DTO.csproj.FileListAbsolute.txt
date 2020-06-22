@@ -1,0 +1,6 @@
+E:\Github\长兴物资\YcTeam.DTO\bin\Release\YcTeam.DTO.dll
+E:\Github\长兴物资\YcTeam.DTO\bin\Release\YcTeam.DTO.pdb
+E:\Github\长兴物资\YcTeam.DTO\obj\Release\YcTeam.DTO.csprojAssemblyReference.cache
+E:\Github\长兴物资\YcTeam.DTO\obj\Release\YcTeam.DTO.csproj.CoreCompileInputs.cache
+E:\Github\长兴物资\YcTeam.DTO\obj\Release\YcTeam.DTO.dll
+E:\Github\长兴物资\YcTeam.DTO\obj\Release\YcTeam.DTO.pdb

@@ -1,0 +1,13 @@
+﻿ @Scripts.Render("~/bundles/AutoComplete")
+ <form class="col s12">
+     <!--多选-->
+     <div id="multiple"></div>
+ </form>
+ <style>
+     .dropdown-content {
+         max-height: 150px;
+     }
+ </style>
+ <script>
+     AutoComplete("multiple", "@ViewData["Multiple"]","multiple");
+ </script>

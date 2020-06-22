@@ -1,0 +1,154 @@
+﻿@model Webdiyer.WebControls.Mvc.PagedList<YcTeam.DTO.Master.ProjectDto>
+@using Webdiyer.WebControls.Mvc
+
+<p>
+    @Html.ActionLink("创建新项目", "CreateProject")
+</p>
+
+<script>
+    ////初始化二级下拉框数组
+    //var categoryList = [
+    //    { "value": 11, "name": "政治素质" },
+    //    { "value": 12, "name": "理论学习" },
+    //    { "value": 21, "name": "组织纪律" },
+    //    { "value": 22, "name": "廉洁自律" },
+    //    { "value": 31, "name": "道德修养" },
+    //    { "value": 32, "name": "文明素质" },
+    //    { "value": 41, "name": "履职尽责" },
+    //    { "value": 42, "name": "奉献精神" }
+    //];
+
+    //function selCategory(obj) {
+    //    //清空历史选项
+    //    $("#selCategory").empty();
+    //    //获取当前选中的值
+    //    var index = $(obj).val();
+    //    //遍历二级下拉框数组
+    //    for (var i in categoryList) {
+    //        if (categoryList.hasOwnProperty(i)) {
+    //            //获取数组中的第一个索引
+    //            var cv = categoryList[i].value.toString().substring(0, 1);
+    //            //数组索引(二级下拉框的值) 等于  选中值（一级下拉框的值）
+    //            if (cv === index) {
+    //                //插入选项
+    //                $("#selCategory").append("<option value='" + categoryList[i].value + "'>" + categoryList[i].name + "</option>");
+    //            }
+    //        }
+    //    }
+    //}
+</script>
+
+<!--一级下属拉框-->
+@*<select id="selProject" name="selProject" onchange="selCategory(this)">
+    <option value="1">政治信念</option>
+    <option value="2">规矩纪律</option>
+    <option value="3">道德品行</option>
+    <option value="4">贡献作为</option>
+</select>*@
+
+<!--二级下属拉框-->
+@*<select id="selCategory" name="selCategory">
+    <option value="11">政治素质</option>
+    <option value="12">理论学习</option>
+</select>*@
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WBSCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmallProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmallWBSCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Funds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VoltageGrade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysDepartName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WBSCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SmallProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SmallWBSCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Funds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VoltageGrade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SysDepartName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="@Url.Action("ProjectDetails", new {id = item.Id})">
+                    详情
+                </a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-pencil" href="@Url.Action("ProjectEdit", new {id = item.Id})"></a>
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-remove" href="@Url.Action("ProjectDelete", new {id = item.Id})" onclick="return confirm('are you sure?');"></a>
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts{@{Html.RegisterMvcPagerScriptResource();}}
+@section headers{
+    <style>
+        table th {
+            text-align: center;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        .pagination {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 0px;
+            padding: 3px;
+        }
+    </style>
+}

@@ -1,0 +1,92 @@
+﻿@using YcTeam.DTO.FlowPlan
+@using YcTeam.Models.FlowPlan
+@using YcTeam.Models.Sys
+@model IEnumerable<YcTeam.DTO.FlowPlan.PlanDto>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysDepartOwnerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysDepartName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        @if (ViewBag.AllowShow is true)
+        {
+            <th>操作</th>
+            <th>操作</th>
+            <th>操作</th>
+        }
+    </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysDepartOwnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysDepartName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        @if (ViewBag.AllowShow is true)
+        {
+            if (item.SysDepartName != null)
+            {
+                <td>
+                    @{
+                        var createParam = new
+                        {
+                            projectId = item.ProjectId,
+                            projectName = item.ProjectName,
+                            departName = item.SysDepartOwnerName,
+                        };
+                    }
+                    <a class="btn btn-success btn-xs" href="@Url.Action("ConstructionCreate", createParam)">
+                        新增
+                    </a>
+                </td>
+                        }
+            else
+            {
+                <td></td>
+            }
+        }
+        @if (ViewBag.AllowShow is true)
+        {
+            <td>
+                @{
+                    var editPlan = new PlanDto
+                    {
+                        Id = item.Id,
+                        SysDepartName = item.SysDepartOwnerName,
+                        SysDepartId = item.SysDepartId,
+                        ProjectName = item.ProjectName,
+                        ProjectId = item.ProjectId
+                    };
+                }
+                <a class="btn btn-success btn-xs" href="@Url.Action("ConstructionEdit", editPlan)">
+                    修改
+                </a>
+         </td>
+        }
+        @if (ViewBag.AllowShow is true)
+        {
+            <td>
+                <a class="glyphicon glyphicon-remove" href="@Url.Action("ConstructionDelete", new {id = item.Id})" onclick="return confirm('计划申请立即中断，删除不可恢复，确定删除?');"></a>
+            </td>
+        }
+    </tr>
+}
+
+</table>

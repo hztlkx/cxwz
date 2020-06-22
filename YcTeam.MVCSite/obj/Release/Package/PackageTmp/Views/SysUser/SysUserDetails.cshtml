@@ -1,0 +1,52 @@
+﻿@model YcTeam.DTO.System.SysUserDto
+
+<div>
+    <h6>用户详情</h6>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RealName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RealName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SysDepartName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SysDepartName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SysRoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SysRoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "SysUserEdit", new { id = Model.Id }) |
+    @Html.ActionLink("返回用户列表", "SysUserList")
+</p>

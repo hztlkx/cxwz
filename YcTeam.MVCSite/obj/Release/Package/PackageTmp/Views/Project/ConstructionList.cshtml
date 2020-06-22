@@ -1,0 +1,40 @@
+﻿@model IEnumerable<YcTeam.DTO.FlowPlan.PlanDto>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysDepartName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>操作</th>
+        <th>操作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysDepartName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            <a class="btn btn-success btn-xs" href="@Url.Action("ConstructionEdit", new {id = item.ProjectId,projectName=item.ProjectName})">
+                施工队分配
+            </a>
+        </td>
+        <td>
+            <a class="glyphicon glyphicon-remove" href="@Url.Action("ConstructionDelete", new {id = item.Id})" onclick="return confirm('确定删除?');"></a>
+        </td>
+    </tr>
+}
+
+</table>

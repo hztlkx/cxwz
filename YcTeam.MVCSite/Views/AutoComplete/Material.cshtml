@@ -1,0 +1,11 @@
+﻿ @Scripts.Render("~/bundles/AutoComplete")
+<!--单选-->
+<div id="material"></div>
+ <style>
+     .dropdown-content {
+         max-height: 250px;
+     }
+ </style>
+ <script>
+     AutoComplete("material", "@ViewData["Single"]",null,"90%");
+ </script>
