@@ -44,6 +44,9 @@ namespace YcTeam.DTO.FlowInto
         [Display(Name = "需求时间")]
         public DateTime PlanTime { get; set; }
 
+        [Display(Name = "供应商名称编号")]
+        public Guid ProviderId { get; set; }
+
         [Display(Name = "匹配供应商名称")]
         public string ProviderName { get; set; }
 
@@ -52,5 +55,8 @@ namespace YcTeam.DTO.FlowInto
 
         [Display(Name = "创建时间")]
         public DateTime CreateTime { get; set; }
+
+        [Display(Name = "本次入库数量")]
+        public int WareHousing { get; set; }
     }
 }

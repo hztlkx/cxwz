@@ -35,8 +35,10 @@ namespace YcTeam.MVCSite.Controllers
         }
 
         [HttpGet] 
-        public async Task<ActionResult> CreateInStorageReceive()
+        public async Task<ActionResult> CreateInStorageReceive(Guid id)
         {
+            var inStorageTaskService = new InStorageTaskService();
+            var data = await inStorageTaskService.GetOneMaterialById(id);
             //加载数据
             List<SelectListItem> selectList = new List<SelectListItem>();
             var list = await new InStorageTaskService().GetAllProvider();
@@ -44,12 +46,12 @@ namespace YcTeam.MVCSite.Controllers
             {
                 selectList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             }
-            ViewBag.ProviderList = selectList;
-            DateTime dt1 = Convert.ToDateTime("1970 - 01 - 01 00:00:00");
-            TimeSpan ts = DateTime.Now-dt1;
+            ViewBag.ProviderList = selectList;         
             return View(new InStorageReceiveDto()
             {
-                Batch="PC"+ts
+                Batch=data.SysBatch,
+                 ProviderId=data.ProviderId,
+                 MaterialId=data.MaterialId,
             });
 
         }

@@ -97,5 +97,13 @@ namespace YcTeam.BLL.Master
                 return await providerDao.GetAllAsync().CountAsync();
             }
         }
+
+        public async Task<List<Provider>> SearchProvider(string text)
+        {
+            using (var providerDao = new ProviderDao())
+            {
+                return await providerDao.GetAllAsync().Where(m => m.Name.Contains(text)).ToListAsync();
+            }
+        }
     }
 }

@@ -2547,6 +2547,7 @@
     <Content Include="Views\InStorageTask\CreateInStorageTask.cshtml" />
     <Content Include="Views\InStorageTask\InsertInStorageTask.cshtml" />
     <Content Include="Views\InStorageTask\InStorageTaskList.cshtml" />
+    <Content Include="Views\AutoComplete\Provider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

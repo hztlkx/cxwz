@@ -14,7 +14,7 @@ namespace YcTeam.Models.FlowInto
         /// </summary>
         public string Organization { get; set; }        
         /// <summary>
-        /// 需求批次
+        /// 需求批次号
         /// </summary>
         public string SysBatch { get; set; }     
         /// <summary>

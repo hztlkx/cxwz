@@ -76,9 +76,17 @@
     <Compile Include="Master\Material.cs" />
     <Compile Include="Master\Project.cs" />
     <Compile Include="Master\Provider.cs" />
-    <Compile Include="Migrations\202006220636001_x1.cs" />
-    <Compile Include="Migrations\202006220636001_x1.Designer.cs">
-      <DependentUpon>202006220636001_x1.cs</DependentUpon>
+    <Compile Include="Migrations\202006220813002_x3.cs" />
+    <Compile Include="Migrations\202006220813002_x3.Designer.cs">
+      <DependentUpon>202006220813002_x3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006220836412_x4.cs" />
+    <Compile Include="Migrations\202006220836412_x4.Designer.cs">
+      <DependentUpon>202006220836412_x4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006220838019_x5.cs" />
+    <Compile Include="Migrations\202006220838019_x5.Designer.cs">
+      <DependentUpon>202006220838019_x5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="FlowPlan\Plan.cs" />
@@ -107,8 +115,14 @@
     <Folder Include="FlowBack\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006220636001_x1.resx">
-      <DependentUpon>202006220636001_x1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006220813002_x3.resx">
+      <DependentUpon>202006220813002_x3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006220836412_x4.resx">
+      <DependentUpon>202006220836412_x4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006220838019_x5.resx">
+      <DependentUpon>202006220838019_x5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

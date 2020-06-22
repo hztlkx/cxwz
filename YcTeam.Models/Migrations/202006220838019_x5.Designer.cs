@@ -7,13 +7,13 @@ namespace YcTeam.Models.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class x1 : IMigrationMetadata
+    public sealed partial class x5 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(x1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(x5));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006220636001_x1"; }
+            get { return "202006220838019_x5"; }
         }
         
         string IMigrationMetadata.Source

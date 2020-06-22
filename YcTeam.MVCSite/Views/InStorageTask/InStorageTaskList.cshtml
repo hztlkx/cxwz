@@ -6,8 +6,6 @@
 }
     <p>
         @Html.ActionLink("添加入库任务", "CreateInStorageTask")
-
-        @Html.ActionLink("物料入库", "CreateInStorageTask")
     </p>
     <table class="table">
         <tr>
@@ -16,6 +14,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SysBatch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InStorageName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Code)
@@ -33,58 +37,112 @@
                 @Html.DisplayNameFor(model => model.PlanNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.State)
+                @Html.DisplayNameFor(model => model.PlanTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProviderName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Note)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateTime)
+                @Html.DisplayNameFor(model => model.WareHousing)
             </th>
+
             <th style="color:green">操作</th>
             <th style="color:red">作废</th>
         </tr>
-
+        @{ int i = 0;}
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Organization)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SysBatch)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Describe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SysNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlanNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateTime)
-        </td>
-        <td>
-            @Html.ActionLink("添加物料", "InsertInStorageTask", new { id = item.Id })
-        </td>
-        <td>
-            <a class="glyphicon glyphicon-remove" font-weight: lighter;" href="@Url.Action("InStorageTaskDelete", new {id = item.Id})" onclick="return confirm('are you sure?');"></a>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Organization)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysBatch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InStorageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Describe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SysNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProviderName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <th width="80">
+                    @Html.EditorFor(modelItem => item.WareHousing, new
+                {
+                   htmlAttributes = new
+                   {
+                       @id = "SysNumber" + i,
+                       @style = "color:black;border-bottom:none;font-size:12px;text-align:center;"
+                   }
+                })
+                </th>
+                <td>
+                    <a class="btn btn-xs" onclick="UpdateInStorageTask(@i)">修改</a>
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-remove" font-weight: lighter;" href="@Url.Action("InStorageTaskDelete", new {id = item.Id})" onclick="return confirm('are you sure?');"></a>
+                </td>
+            </tr>
         }
 
     </table>
+
+    <script>
+        function UpdateInStorageTask(i) {
+            var Organization = $("#Organization" + i).val();
+            var SysBatch = $("#SysBatch" + i).val();
+            var materialId = $("#MaterialId" + i).val();
+            var providerId = $("#ProviderId" + i).val();
+            var inStorageId = $("#InStorageId" + i).val();
+            var putNumber = $("#WareHousing" + i).val();
+
+            var jsonArray = [];
+            var json = new Object();
+            json.Organization = Organization,
+                json.SysBatch = SysBatch;
+            json.materialId = materialId;
+            json.providerId = providerId;
+            json.inStorageId = inStorageId;
+            json.putNumber = putNumber;
+            console.log(json);
+            $.ajax({
+                url: "/InStorageReceive/CreateInStorageReceive",
+                type: "post",
+                dataType: "json",
+                data: JSON.stringify(jsonArray),
+                success: function (rst) {
+                    if (rst.Data) {
+                        alert("更新成功!");
+                    } else {
+                        alert("更新失败!");
+                    }
+                }
+            });
+        } 
+    </script>

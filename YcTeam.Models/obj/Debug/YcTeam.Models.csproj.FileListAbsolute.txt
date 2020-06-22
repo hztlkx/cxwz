@@ -95,10 +95,11 @@ E:\项目文件\长兴备份\cxwz\YcTeam.Models\bin\Debug\MySql.Data.xml
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\bin\Debug\MySql.Data.Entity.EF6.xml
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
-E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.csprojAssemblyReference.cache
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.csproj.CoreCompileInputs.cache
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.csproj.CopyComplete
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.dll
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.pdb
-E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.Migrations.x1.resources
+E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.Migrations.x3.resources
 E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.csproj.GenerateResource.cache
+E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.Migrations.x4.resources
+E:\项目文件\长兴备份\cxwz\YcTeam.Models\obj\Debug\YcTeam.Models.Migrations.x5.resources

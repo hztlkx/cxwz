@@ -48,7 +48,7 @@ namespace YcTeam.MVCSite.Controllers
             {
                 selectList.Add(new SelectListItem { Text = item.Name, Value = item.Id.ToString() });
             }
-            ViewBag.SysDepartList = selectList;
+            ViewBag.InStorage = selectList;
             return View();
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace YcTeam.MVCSite.Controllers
             if (ModelState.IsValid)              
             {            
                 IInStorageTaskService iInStorageTaskService = new InStorageTaskService();
-                iInStorageTaskService.CreateInStorageTask(model.Organization,model.SysBatch, model.State, Guid InStorageId, Guid.Parse(materialHidden), model.PlanNumber, model.PlanTime, Guid.Parse(providerHidden), model.Note);
+                iInStorageTaskService.CreateInStorageTask(model.Organization,model.SysBatch, model.State, Guid.Parse(model.InStorageName), Guid.Parse(materialHidden), model.PlanNumber, model.PlanTime, Guid.Parse(providerHidden), model.Note);
                 return RedirectToAction(nameof(InStorageTaskList));
             }
             ModelState.AddModelError("", @"您录入的信息有误");

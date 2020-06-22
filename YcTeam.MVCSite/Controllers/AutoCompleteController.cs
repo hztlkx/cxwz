@@ -41,7 +41,30 @@ namespace YcTeam.MVCSite.Controllers
 
             return Json(Json(jsonList), JsonRequestBehavior.AllowGet);
         }
+        /// <summary>
+        /// 查询供应商
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public async Task<JsonResult> ProviderSearch(string key)
+        {
+            var providerService = new ProviderService();
+            var list = await providerService.SearchProvider(key);
 
+            List<Object> jsonList = new List<Object>();
+            foreach (var m in list)
+            {
+                var json = new
+                {
+                    id = m.Id,
+                    text = m.Name,
+                    highlight = m.Name
+                };
+                jsonList.Add(json);
+            }
+
+            return Json(Json(jsonList), JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult SysDepartSearch(string key)

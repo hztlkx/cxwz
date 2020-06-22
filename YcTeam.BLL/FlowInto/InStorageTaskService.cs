@@ -29,13 +29,15 @@ namespace YcTeam.BLL.FlowInto
                     {
                         Id = m.Id,
                         Organization = m.Organization,
-                        SysBatch=m.SysBatch,
-                        MaterialId = m.Material.Id,
+                        SysBatch = m.SysBatch,
+                        State = m.State,
+                        InStorageName = m.InStorage.Name,
                         Code = m.Material.Code,
                         Describe = m.Material.Describe,
                         Unit = m.Material.Unit,
                         PlanNumber = m.Number,
-                        State = m.State,
+                        PlanTime = m.PlanTime,
+                        ProviderName = m.Provider.Name,
                         Note = m.Note,
                         CreateTime = m.CreateTime
                     }).FirstAsync();
